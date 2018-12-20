@@ -1,6 +1,5 @@
 package com.baidu.disconf.web.service.user.service.impl;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -45,6 +44,6 @@ public class UserInnerMgrImpl implements UserInnerMgr {
     public Set<Long> getVisitorAppIds() {
 
         Visitor visitor = ThreadContext.getSessionVisitor();
-        return new HashSet<Long>();//visitor.getAppIds();
+        return visitor.getAppIds();
     }
 }
