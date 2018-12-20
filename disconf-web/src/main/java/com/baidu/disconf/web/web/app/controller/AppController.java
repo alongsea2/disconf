@@ -23,7 +23,6 @@ import com.baidu.dsp.common.vo.JsonObjectBase;
  * @version 2014-6-16
  */
 @Controller
-@CrossOrigin
 @RequestMapping(WebConstants.API_PREFIX + "/app")
 public class AppController extends BaseController {
 

@@ -1,7 +1,7 @@
 (function ($) {
 
 
-    //getSession();
+    getSession();
 
     var appId = -1;
     var envId = -1;
@@ -43,7 +43,7 @@
 
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/api/app/list?pageNo=" + page + url
+            url: "/api/app/list?pageNo=" + page + url
         }).done(
             function (data) {
                 if (data.success === "true") {
@@ -67,7 +67,7 @@
 
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/api/app/list?pageNo=0&pageSize=10"
+        url: "/api/app/list?pageNo=0&pageSize=10"
     }).done(
         function (data) {
             if (data.success === "true") {
