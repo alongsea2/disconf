@@ -1,7 +1,7 @@
 (function ($) {
 
 
-    getSession();
+    //getSession();
 
     var appId = -1;
     var envId = -1;
@@ -10,9 +10,64 @@
     //
     // 获取APP信息
     //
+    var page = 0;
+    $("#prev").click(function () {
+        page = page - 1 < 0 ? 0 : page - 1;
+        pageList(page,true);
+    });
+
+    $("#next").click(function () {
+        page += 1;
+        pageList(page,true);
+    });
+
+    $("#back").click(function () {
+        pageList(0,true);
+    });
+
+    $("#search").click(function () {
+        pageList(0,true);
+    });
+
+    $("#all").click(function () {
+        pageList(-1,false);
+    });
+
+    function pageList(page,notAll){
+        var appName = $("#searchName").val();
+        var url = "";
+        if(notAll){
+            appName = appName === undefined || appName === "" ? null : appName;
+            url = appName !== null && appName !== "null" ? "&appName=" + appName : "";
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/api/app/list?pageNo=" + page + url
+        }).done(
+            function (data) {
+                if (data.success === "true") {
+                    var html = "";
+                    var result = data.page.result;
+                    $
+                        .each(
+                            result,
+                            function (index, item) {
+                                html += '<li role="presentation" role="menuitem" tabindex="-1"><a rel='
+                                    + item.id
+                                    + ' href="#">APP: '
+                                    + item.name
+                                    + '</a></li>';
+                            });
+                    $("#applist").html(html);
+                }
+            });
+    }
+
+
     $.ajax({
         type: "GET",
-        url: "/api/app/list"
+        url: "http://localhost:8080/api/app/list?pageNo=0&pageSize=10"
     }).done(
         function (data) {
             if (data.success === "true") {

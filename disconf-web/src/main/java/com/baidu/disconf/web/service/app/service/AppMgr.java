@@ -40,7 +40,7 @@ public interface AppMgr {
      *
      * @return
      */
-    List<AppListVo> getAuthAppVoList(Integer pageNo,Integer pageSize);
+    List<AppListVo> getAuthAppVoList(Integer pageNo,Integer pageSize,String appName);
 
     /**
      * 获取一堆 APP

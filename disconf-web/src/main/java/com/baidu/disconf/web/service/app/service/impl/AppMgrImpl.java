@@ -68,14 +68,14 @@ public class AppMgrImpl implements AppMgr {
     }
 
     @Override
-    public List<AppListVo> getAuthAppVoList(Integer pageNo, Integer pageSize) {
+    public List<AppListVo> getAuthAppVoList(Integer pageNo, Integer pageSize,String appName) {
         if(pageNo == null){
             pageNo = -1;
         }
-        if(pageSize == 0){
-            pageSize = 0;
+        if(pageSize == null){
+            pageSize = 10;
         }
-        List<App> apps = appDao.getByIds(userInnerMgr.getVisitorAppIds(),pageNo,pageSize);
+        List<App> apps = appDao.getByIds(userInnerMgr.getVisitorAppIds(),pageNo,pageSize,appName);
 
         List<AppListVo> appListVos = new ArrayList<AppListVo>();
         for (App app : apps) {

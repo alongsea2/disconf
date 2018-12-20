@@ -8,9 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.baidu.disconf.web.service.app.form.AppNewForm;
 import com.baidu.disconf.web.service.app.service.AppMgr;
@@ -25,6 +23,7 @@ import com.baidu.dsp.common.vo.JsonObjectBase;
  * @version 2014-6-16
  */
 @Controller
+@CrossOrigin
 @RequestMapping(WebConstants.API_PREFIX + "/app")
 public class AppController extends BaseController {
 
@@ -43,9 +42,9 @@ public class AppController extends BaseController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public JsonObjectBase list(Integer pageNo,Integer pageSize) {
+    public JsonObjectBase list(Integer pageNo, Integer pageSize, @RequestParam(value = "appName",required = false) String appName) {
 
-        List<AppListVo> appListVos = appMgr.getAuthAppVoList(pageNo,pageSize);
+        List<AppListVo> appListVos = appMgr.getAuthAppVoList(pageNo,pageSize,appName);
 
         return buildListSuccess(appListVos, appListVos.size());
     }

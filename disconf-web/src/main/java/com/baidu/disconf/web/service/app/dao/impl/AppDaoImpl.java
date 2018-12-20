@@ -1,12 +1,10 @@
 package com.baidu.disconf.web.service.app.dao.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.baidu.unbiz.common.genericdao.operator.Order;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.baidu.disconf.web.service.app.bo.App;
@@ -39,8 +37,13 @@ public class AppDaoImpl extends AbstractDao<Long, App> implements AppDao {
     }
 
     @Override
-    public List<App> getByIds(Set<Long> ids,Integer pageNo,Integer pageSize) {
-        return find(Arrays.asList(match(Columns.APP_ID, ids)),new ArrayList<Order>(0),pageNo,pageSize);
+    public List<App> getByIds(Set<Long> ids,Integer pageNo,Integer pageSize,String appName) {
+        List<Match> list = new ArrayList<Match>();
+        list.add(match(Columns.APP_ID, ids));
+        if(StringUtils.isNotBlank(appName)){
+            list.add(match(Columns.NAME,appName));
+        }
+        return find(list,new ArrayList<Order>(0),pageNo,pageSize);
     }
 
 }
