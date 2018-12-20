@@ -39,7 +39,9 @@ public class AppDaoImpl extends AbstractDao<Long, App> implements AppDao {
     @Override
     public List<App> getByIds(Set<Long> ids,Integer pageNo,Integer pageSize,String appName) {
         List<Match> list = new ArrayList<Match>();
-        list.add(match(Columns.APP_ID, ids));
+        if(ids != null && ids.size() > 0){
+            list.add(match(Columns.APP_ID, ids));
+        }
         if(StringUtils.isNotBlank(appName)){
             list.add(match(Columns.NAME,appName));
         }
