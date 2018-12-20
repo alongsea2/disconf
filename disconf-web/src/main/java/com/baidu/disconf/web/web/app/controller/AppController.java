@@ -43,9 +43,9 @@ public class AppController extends BaseController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public JsonObjectBase list() {
+    public JsonObjectBase list(Integer pageNo,Integer pageSize) {
 
-        List<AppListVo> appListVos = appMgr.getAuthAppVoList();
+        List<AppListVo> appListVos = appMgr.getAuthAppVoList(pageNo,pageSize);
 
         return buildListSuccess(appListVos, appListVos.size());
     }

@@ -314,6 +314,11 @@ public abstract class GenericDao<KEY extends Serializable, ENTITY extends BaseOb
         return find(matches, order, 0, 0);
     }
 
+
+    public List<ENTITY> find(List<Match> matches, List<Order> order,Integer pageNo,Integer pageSize) {
+        return page(matches,order,pageNo,pageSize);
+    }
+
     /**
      * 根据查询条件获取结果集列表
      *

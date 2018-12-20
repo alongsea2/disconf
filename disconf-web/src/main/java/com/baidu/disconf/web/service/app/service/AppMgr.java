@@ -36,6 +36,13 @@ public interface AppMgr {
     List<AppListVo> getAuthAppVoList();
 
     /**
+     * 获取VO结构的APPLIST，包含权限控制
+     *
+     * @return
+     */
+    List<AppListVo> getAuthAppVoList(Integer pageNo,Integer pageSize);
+
+    /**
      * 获取一堆 APP
      *
      * @param ids

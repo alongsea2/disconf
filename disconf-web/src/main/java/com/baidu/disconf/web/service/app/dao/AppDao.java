@@ -26,4 +26,6 @@ public interface AppDao extends BaseDao<Long, App> {
      */
     List<App> getByIds(Set<Long> ids);
 
+
+    public List<App> getByIds(Set<Long> ids,Integer pageNo,Integer pageSize);
 }

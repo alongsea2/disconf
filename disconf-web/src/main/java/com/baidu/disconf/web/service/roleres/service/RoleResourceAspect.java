@@ -50,7 +50,7 @@ public class RoleResourceAspect {
     @Around("anyPublicMethod() && @annotation(requestMapping) && !@annotation(com.baidu.dsp.common.annotation.NoAuth)")
     public Object decideAccess(ProceedingJoinPoint pjp, RequestMapping requestMapping) throws Throwable {
 
-        // 获取method上的url，若未标注value则默认为空字符串
+     /*   // 获取method上的url，若未标注value则默认为空字符串
         String[] values = requestMapping.value();
         String methodUrl = "";
         if (values.length != 0) {
@@ -101,7 +101,7 @@ public class RoleResourceAspect {
             }
             LOG.info("Accessing URL:" + urlInfo + visitorInfo + ", Is priviledged:" + isPriviledged.toString());
         }
-
+*/
         Object rtnOb = null;
 
         try {
