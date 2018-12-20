@@ -103,7 +103,7 @@ public class LoginInterceptor extends WebCommonInterceptor {
         //
         // session中没有该信息,则从 redis上获取，并更新session的数据
         //
-        /*if (visitor == null) {
+        if (visitor == null) {
 
             Visitor redisVisitor = redisLogin.isLogin(request);
 
@@ -125,7 +125,7 @@ public class LoginInterceptor extends WebCommonInterceptor {
 
             // 每次都更新session中的登录信息
             redisLogin.updateSessionVisitor(session, visitor);
-        }*/
+        }
 
         return true;
     }
