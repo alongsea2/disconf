@@ -4,7 +4,6 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.util.PropertyPlaceholderHelper;
 
 import java.util.Properties;
-import java.util.Set;
 
 public class UpdatePropertyResolver extends PropertyPlaceholderConfigurer implements PropertyPlaceholderHelper.PlaceholderResolver {
 
