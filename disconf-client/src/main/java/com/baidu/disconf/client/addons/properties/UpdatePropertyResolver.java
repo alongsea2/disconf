@@ -10,8 +10,6 @@ public class UpdatePropertyResolver extends PropertyPlaceholderConfigurer implem
 
     private Properties props = null;
 
-    private static final UpdatePropertyResolver instance = UpdatePropertyResolverInner.updatePropertyResolver;
-
     @Override
     public String resolvePlaceholder(String placeholderName) {
         return this.resolvePlaceholder(placeholderName,SYSTEM_PROPERTIES_MODE_FALLBACK);
@@ -20,7 +18,7 @@ public class UpdatePropertyResolver extends PropertyPlaceholderConfigurer implem
     String parseString(String strVal) {
         PropertyPlaceholderHelper helper = new PropertyPlaceholderHelper(
                 placeholderPrefix, placeholderSuffix, valueSeparator, ignoreUnresolvablePlaceholders);
-        return helper.replacePlaceholders(strVal, UpdatePropertyResolver.instance);
+        return helper.replacePlaceholders(strVal, getInstance());
     }
 
     private String resolvePlaceholder(String s ,int mode){
@@ -32,7 +30,7 @@ public class UpdatePropertyResolver extends PropertyPlaceholderConfigurer implem
     }
 
     public static UpdatePropertyResolver getInstance() {
-        return instance;
+        return UpdatePropertyResolverInner.updatePropertyResolver;
     }
 
     private static class UpdatePropertyResolverInner{
