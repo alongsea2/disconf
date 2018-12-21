@@ -3,6 +3,7 @@ package com.baidu.disconf.web.service.app.dao.impl;
 import java.util.*;
 
 import com.baidu.unbiz.common.genericdao.operator.Order;
+import com.baidu.unbiz.common.genericdao.param.LikeParam;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public class AppDaoImpl extends AbstractDao<Long, App> implements AppDao {
             list.add(match(Columns.APP_ID, ids));
         }
         if(StringUtils.isNotBlank(appName)){
-            list.add(match(Columns.NAME,appName));
+            list.add(match(Columns.NAME,new LikeParam(appName)));
         }
         return find(list,new ArrayList<Order>(0),pageNo,pageSize);
     }

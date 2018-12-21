@@ -94,8 +94,17 @@ public class ReloadingPropertyPlaceholderConfigurer extends DefaultPropertyPlace
             }
         }
         // then, business as usual. no recursive reloading placeholders please.
-        return super.parseStringValue(buf.toString(), props, visitedPlaceholders);
+        return this.parseStringValueUpdate(buf.toString(), props, visitedPlaceholders);
+        //< spring 5
+        //return super.parseStringValue(buf.toString(),props,visitedPlaceholders);
+
     }
+
+    private synchronized String parseStringValueUpdate(String s,Properties props,Set visitedPlaceholders){
+        UpdatePropertyResolver.getInstance().setProps(props);
+        return UpdatePropertyResolver.getInstance().parseString(s);
+    }
+
 
     /**
      * @param currentBeanName     当前的bean name

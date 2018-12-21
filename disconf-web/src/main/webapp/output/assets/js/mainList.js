@@ -26,8 +26,7 @@
     });
 
     $("#search").click(function () {
-        $("#appDropdownMenuTitle").html("请下拉");
-        pageList(-1,true);
+        pageList(0,true);
     });
 
     $("#all").click(function () {
@@ -44,7 +43,7 @@
 
         $.ajax({
             type: "GET",
-            url: "/api/app/list?pageNo=" + page + url
+            url: "http://localhost:8080/api/app/list?pageNo=" + page + url
         }).done(
             function (data) {
                 if (data.success === "true") {
@@ -68,7 +67,7 @@
 
     $.ajax({
         type: "GET",
-        url: "/api/app/list?pageNo=-1&pageSize=10"
+        url: "http://localhost:8080/api/app/list?pageNo=0&pageSize=10"
     }).done(
         function (data) {
             if (data.success === "true") {
